@@ -17,38 +17,81 @@ class _HomePageState extends State<HomePage> {
 
     List<Step> getSteps() => [
           Step(
-            title: Text("Title 1", style: TextStyle(color: Colors.white),),
-            content: Text("Content 1", style: TextStyle(color: Colors.white),),
+            title: Text(
+              "Title 1",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Text(
+              "Content 1",
+              style: TextStyle(color: Colors.white),
+            ),
             isActive: currentStep >= 0,
           ),
           Step(
-            title: Text("Title 2", style: TextStyle(color: Colors.white),),
-            content: Text("Content 2", style: TextStyle(color: Colors.white),),
+            title: Text(
+              "Title 2",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Text(
+              "Content 2",
+              style: TextStyle(color: Colors.white),
+            ),
             isActive: currentStep >= 1,
           ),
           Step(
-            title: Text("Title 3", style: TextStyle(color: Colors.white),),
-            content: Text("Content 3", style: TextStyle(color: Colors.white),),
+            title: Text(
+              "Title 3",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Text(
+              "Content 3",
+              style: TextStyle(color: Colors.white),
+            ),
             isActive: currentStep >= 2,
           ),
         ];
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 0, 0, 0),
+      backgroundColor: Color.fromARGB(255, 56, 56, 56),
       appBar: AppBar(
         title: Text("Bottom Nav"),
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(255, 44, 44, 44),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stepper(
             steps: getSteps(),
             currentStep: currentStep,
+            onStepCancel: () {
+              setState(() {
+                if (currentStep == 0) {
+                  currentStep = currentStep;
+                } else {
+                  currentStep--;
+                }
+              });
+            },
+            onStepContinue: () {
+              setState(() {
+                if (currentStep == 2) {
+                  currentStep = currentStep;
+                } else {
+                  currentStep += 1;
+                  print(currentStep);
+                }
+              });
+            },
+            // onStepTapped: (int currentStep) {
+            //   setState(() {
+            //     print(currentStep);
+            //     currentStep = currentStep;
+            //   });
+            // },
           ),
         ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Color.fromARGB(255, 58, 58, 58),
         color: Color.fromARGB(255, 255, 111, 0),
         animationDuration: Duration(milliseconds: 300),
         items: [
